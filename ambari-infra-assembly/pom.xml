@@ -401,6 +401,14 @@
                     <get src="${common-fileupload.location.url}" dest="target/${common-fileupload.jar.name}" usetimestamp="true"/>
                     <move file="target/${common-fileupload.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
+                    <move file="target/${aws-java-sdk-core.jar.name}"
+                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
+                    <move file="target/${aws-java-sdk-s3.jar.name}"
+                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
+                    <move file="target/${aws-java-sdk-dynamodb.jar.name}"
+                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
+                    <move file="target/${hadoop-aws.jar.name}"
+                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
 
                     <copy file="${infra.solr.plugin.dir}/target/ambari-infra-solr-plugin-${project.version}.jar"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
