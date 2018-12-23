@@ -48,7 +48,6 @@
     <aws-java-sdk-core.jar.name>aws-java-sdk-core-${aws-sdk.version}.jar</aws-java-sdk-core.jar.name>
     <aws-java-sdk-s3.jar.name>aws-java-sdk-s3-${aws-sdk.version}.jar</aws-java-sdk-s3.jar.name>
     <aws-java-sdk-dynamodb.jar.name>aws-java-sdk-dynamodb-${aws-sdk.version}.jar</aws-java-sdk-dynamodb.jar.name>
-    <hadoop-aws.jar.name>hadoop-aws-${hadoop.version}.jar</hadoop-aws.jar.name>
     <jenkins.docker.folder>../jenkins/containers</jenkins.docker.folder>
   </properties>
 
@@ -198,14 +197,24 @@
                     <get src="${common-fileupload.location.url}" dest="target/${common-fileupload.jar.name}" usetimestamp="true"/>
                     <move file="target/${common-fileupload.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-core.jar.name}"
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-core.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-s3.jar.name}"
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-s3.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-dynamodb.jar.name}"
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-dynamodb.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${hadoop-aws.jar.name}"
-                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
+
+                    <delete>
+                      <fileset dir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/">
+                        <include name="hadoop-*.jar"/>
+                      </fileset>
+                    </delete>
+
+                    <copy todir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/">
+                      <fileset dir="${infra.solr.plugin.dir}/target/libs">
+                        <include name="hadoop-*.jar"/>
+                      </fileset>
+                    </copy>
 
                     <copy file="${infra.solr.plugin.dir}/target/ambari-infra-solr-plugin-${project.version}.jar"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
@@ -401,14 +410,24 @@
                     <get src="${common-fileupload.location.url}" dest="target/${common-fileupload.jar.name}" usetimestamp="true"/>
                     <move file="target/${common-fileupload.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-core.jar.name}"
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-core.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-s3.jar.name}"
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-s3.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-dynamodb.jar.name}"
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${aws-java-sdk-dynamodb.jar.name}"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
-                    <move file="${infra.solr.plugin.dir}/target/libs/${hadoop-aws.jar.name}"
-                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
+
+                    <delete>
+                      <fileset dir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/">
+                        <include name="hadoop-*.jar"/>
+                      </fileset>
+                    </delete>
+
+                    <copy todir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/">
+                      <fileset dir="${infra.solr.plugin.dir}/target/libs">
+                        <include name="hadoop-*.jar"/>
+                      </fileset>
+                    </copy>
 
                     <copy file="${infra.solr.plugin.dir}/target/ambari-infra-solr-plugin-${project.version}.jar"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
