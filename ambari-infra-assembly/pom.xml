@@ -48,6 +48,7 @@
     <aws-java-sdk-core.jar.name>aws-java-sdk-core-${aws-sdk.version}.jar</aws-java-sdk-core.jar.name>
     <aws-java-sdk-s3.jar.name>aws-java-sdk-s3-${aws-sdk.version}.jar</aws-java-sdk-s3.jar.name>
     <aws-java-sdk-dynamodb.jar.name>aws-java-sdk-dynamodb-${aws-sdk.version}.jar</aws-java-sdk-dynamodb.jar.name>
+    <jets3t.jar.name>jets3t-0.9.4.jar</jets3t.jar.name>
     <jenkins.docker.folder>../jenkins/containers</jenkins.docker.folder>
   </properties>
 
@@ -215,6 +216,8 @@
                         <include name="hadoop-*.jar"/>
                       </fileset>
                     </copy>
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${jets3t.jar.name}"
+                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
 
                     <copy file="${infra.solr.plugin.dir}/target/ambari-infra-solr-plugin-${project.version}.jar"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
@@ -428,6 +431,8 @@
                         <include name="hadoop-*.jar"/>
                       </fileset>
                     </copy>
+                    <copy file="${infra.solr.plugin.dir}/target/libs/${jets3t.jar.name}"
+                          toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
 
                     <copy file="${infra.solr.plugin.dir}/target/ambari-infra-solr-plugin-${project.version}.jar"
                           toDir="${project.build.directory}/solr/server/solr-webapp/webapp/WEB-INF/lib/"/>
