@@ -26,9 +26,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class S3N extends DelegateToFileSystem {
+public class S3NativeFileSystem extends DelegateToFileSystem {
 
-  public S3N(URI theUri, Configuration conf) throws IOException, URISyntaxException {
+  public S3NativeFileSystem(URI theUri, Configuration conf) throws IOException, URISyntaxException {
     super(theUri, new NativeS3FileSystem(), conf, "s3n", false);
   }
 
